@@ -36,7 +36,12 @@ Once you are sure the BOX file are correct you can procede with the second and f
 At the end of this process you will (in the same directory of the application) a file called [lng].traineddata, this is the file of training, copy it inside your tessdata folder in order to use it. 
   
 -l: specify the language name
+
 -f: specify the font name
+
+## Example
+Tif image example for training
+![Tif image](example/input_1.tif)
 
 ## Built With
 
