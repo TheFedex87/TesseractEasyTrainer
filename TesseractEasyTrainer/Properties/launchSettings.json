@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TesseractEasyTrainer": {
+      "commandName": "Project",
+      "commandLineArgs": "--tess-path \"C:\\Program Files (x86)\\Tesseract-OCR\" -m train --images-directory D:\\projects\\Personali\\TesseractEasyTraining\\TesseractEasyTrainer\\test -l bau -f test -v"
+    }
+  }
+}
