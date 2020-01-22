@@ -14,15 +14,17 @@ The training process is based on 2 main steps:
   - Train using the created BOX file
   
 In order to generate the BOX file run this command:
-
+```properties
   .\TesseractEasyTrainer.exe --tess-path "[TESSERACT_INSTALL_DIRECTORY]" -m createbox --images-directory [IMAGES_TIF_DIRECTORY] -l eng -f mystrangefont -v
-  
+```
 After this command, will be created a local folder (in the same directory where you placed TesseractEasyTrainer.exe) which contains a renamed version of your TIF file and some BOX file (the number of BOX file it the same of TIF file). Now you have check that the BOX file are correct. In order to analyze them you can use a tool like jTessboxedit which you can find here:
 http://vietocr.sourceforge.net/training.html
 With this tool you have to find the correct path of each char for every TIF file.
 
 Once you are sure the BOX file are correct you can procede with the second and final step of training. In order to do this run the following command:
+```properties
   .\TesseractEasyTrainer.exe --tess-path "[TESSERACT_INSTALL_DIRECTORY]" -m train --images-directory [IMAGES_TIF_DIRECTORY] -l eng -f mystrangefont -v
+```
   
 At the end of this process you will (in the same directory of the application) a file called [lng].traineddata, this is the file of training, copy it inside your tessdata folder in order to use it. 
   
