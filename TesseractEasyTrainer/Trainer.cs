@@ -33,6 +33,12 @@ namespace TesseractEasyTrainer
 
         internal void Train()
         {
+            //Generate local folder if not exists
+            if(!Directory.Exists(LOCAL_FOLDER_TEMP))
+            {
+                Directory.CreateDirectory(LOCAL_FOLDER_TEMP);
+            }
+
             Directory.SetCurrentDirectory(LOCAL_FOLDER_TEMP);
 
             // Check the presence of Tesseract exe inside folder
@@ -110,19 +116,12 @@ namespace TesseractEasyTrainer
         }
 
         private List<FileInfo> copyImagesLocally(List<FileInfo> images)
-        {
-            
-            // Create local folder if not exists
-            if (!Directory.Exists(LOCAL_FOLDER_TEMP))
-            {
-                Directory.CreateDirectory(LOCAL_FOLDER_TEMP);
-            }
-
+        {  
             var localImages = new List<FileInfo>();
             foreach(var image in images)
             {
                 StringBuilder localImageName = new StringBuilder(languageName).Append(".").Append(fontName).Append(".exp").Append(images.IndexOf(image)).Append(".tif");
-                string localImagePath = Path.Combine(LOCAL_FOLDER_TEMP, localImageName.ToString());
+                string localImagePath = Path.Combine(".", localImageName.ToString());
 
                 image.CopyTo(localImagePath, true);
 
