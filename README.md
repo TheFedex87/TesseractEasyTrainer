@@ -1,5 +1,5 @@
 # TesseractEasyTrainer
-An easy project created to semplyfy the procedure of training Tesseract, one of the most powerfull and free OCR software. It automatically create all necessary file in order to create the final trained file.
+An easy project created to simplify the procedure of training Tesseract, one of the most powerfull and free OCR software. It automatically create all necessary file in order to create the final trained file.
 
 ### Prerequisites
 
