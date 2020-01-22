@@ -5,6 +5,12 @@ An easy project created to semplyfy the procedure of training Tesseract, one of 
 
 .NET Core >= 3.1
 
+### Releases
+## Current Version
+[1.0.0](pub-releases/1.0.0.zip)
+
+## Old Version
+
 ### How use it
 First you need to create at least one TIF file, which include all the chars you have to recognize. An example can be found in the repository (input_1.tif). More file you have and more the training will be accurate. 
 Copy al your TIF file inside a folder.
