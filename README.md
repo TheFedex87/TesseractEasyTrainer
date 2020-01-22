@@ -12,6 +12,7 @@ An easy project created to simplify the procedure of training Tesseract, one of 
 ##### Old Version
 
 ### How use it
+Refer to Contributing section in order to get the link of original guide.
 First you need to create at least one TIF file, which include all the chars you have to recognize. An example can be found in the repository (input_1.tif). More file you have and more the training will be accurate. 
 Copy al your TIF file inside a folder.
 
@@ -43,7 +44,8 @@ At the end of this process you will (in the same directory of the application) a
 
 ## Contributing
 
-Thanks to Mattias Henell which wrote this amazing guide https://medium.com/apegroup-texts/training-tesseract-for-labels-receipts-and-such-690f452e8f79
+Thanks to Mattias Henell which wrote this amazing guide 
+https://medium.com/apegroup-texts/training-tesseract-for-labels-receipts-and-such-690f452e8f79
 
 
 ## Authors
