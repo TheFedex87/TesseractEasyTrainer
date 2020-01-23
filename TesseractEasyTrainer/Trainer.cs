@@ -200,7 +200,7 @@ namespace TesseractEasyTrainer
             //tesseractProcess.StartInfo.RedirectStandardError = verbose;
             unicharsetExtractorProcess.StartInfo.CreateNoWindow = !verbose;
             //tesseractProcess.StartInfo.UseShellExecute = false;
-            unicharsetExtractorProcess.StartInfo.Arguments = new StringBuilder("--output_unicharset ").Append(Path.Combine(".", string.Format("{0}.unicharset", languageName))).Append(" ").ToString();
+            unicharsetExtractorProcess.StartInfo.Arguments = new StringBuilder("--output_unicharset ").Append(Path.Combine(".", string.Format("unicharset", languageName))).Append(" ").ToString();
             foreach (var box in trainModel.Boxes)
             {
                 StringBuilder args = new StringBuilder(box.FullName);
@@ -212,7 +212,7 @@ namespace TesseractEasyTrainer
             unicharsetExtractorProcess.Start();
             unicharsetExtractorProcess.WaitForExit();
 
-            trainModel.Unicharset = new FileInfo(localTempDirectory.GetFiles("*unicharset")[0].FullName);
+            trainModel.Unicharset = new FileInfo(localTempDirectory.GetFiles("unicharset")[0].FullName);
 
             logger.Log("Generation of unicharset file completed");
         }
@@ -221,12 +221,12 @@ namespace TesseractEasyTrainer
         {
             logger.Log("Generating font properties file...");
 
-            logger.Log(string.Format("Insert font properties parameters [{0} 0 0 0 0 0]", fontName), true);
+            logger.Log(string.Format("Insert font properties parameters [{0} 0 0 1 0 0]", fontName), true);
 
             var fontProperties = Console.ReadLine();
             if(string.IsNullOrWhiteSpace(fontProperties))
             {
-                fontProperties = string.Format("{0} 0 0 0 0 0", fontName);
+                fontProperties = string.Format("{0} 0 0 1 0 0", fontName);
             }
 
             string fontPropertiesPath = Path.Combine(".", string.Format("{0}.font_properties", languageName));
