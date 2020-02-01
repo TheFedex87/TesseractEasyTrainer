@@ -2,7 +2,7 @@
   "profiles": {
     "TesseractEasyTrainer": {
       "commandName": "Project",
-      "commandLineArgs": "--tess-path \"C:\\Program Files (x86)\\Tesseract-OCR\" -m train --images-directory D:\\projects\\Personali\\TesseractEasyTraining\\peopleslobby -l csh -f lobbybw -v"
+      "commandLineArgs": "--tess-path \"C:\\Program Files (x86)\\Tesseract-OCR\" -m createbox --images-directory C:\\projects\\PokerCashGrabber\\PeoplesPokerCashGrabber\\OCR-Training\\new -l csh -f lobbybw -v --no-copy"
     }
   }
 }

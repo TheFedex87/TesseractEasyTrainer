@@ -19,14 +19,16 @@ namespace TesseractEasyTrainer
         private string fontName;
         private bool verbose;
         private Logger logger;
+        private bool noCopy;
 
-        internal Trainer(DirectoryInfo imagesDirectory, DirectoryInfo tesseractDirectory, EMode emode, string languageName, string fontName, bool verbose = false, Logger logger = null)
+        internal Trainer(DirectoryInfo imagesDirectory, DirectoryInfo tesseractDirectory, EMode emode, string languageName, string fontName, bool noCopy = false, bool verbose = false, Logger logger = null)
         {
             this.imagesDirectory = imagesDirectory;
             this.tesseractDirectory = tesseractDirectory;
             this.emode = emode;
             this.languageName = languageName;
             this.fontName = fontName;
+            this.noCopy = noCopy;
             this.verbose = verbose;
             this.logger = logger;
         }
@@ -39,7 +41,10 @@ namespace TesseractEasyTrainer
                 Directory.CreateDirectory(LOCAL_FOLDER_TEMP);
             }
 
-            Directory.SetCurrentDirectory(LOCAL_FOLDER_TEMP);
+            if(!noCopy)
+                Directory.SetCurrentDirectory(LOCAL_FOLDER_TEMP);
+            else
+                Directory.SetCurrentDirectory(imagesDirectory.FullName);
 
             // Check the presence of Tesseract exe inside folder
             FileInfo tesseractExe = new FileInfo(Path.Combine(tesseractDirectory.FullName, "tesseract.exe"));
@@ -56,7 +61,11 @@ namespace TesseractEasyTrainer
                 var images = retrieveTifImages(imagesDirectory);
 
                 // Copy TIF images locally
-                var localImages = copyImagesLocally(images);
+                List<FileInfo> localImages = new List<FileInfo>();
+                if (!noCopy)
+                    localImages = copyImagesLocally(images);
+                else
+                    localImages = images;
 
                 // Create boxes
                 createBoxes(localImages, tesseractExe);
@@ -141,6 +150,16 @@ namespace TesseractEasyTrainer
             //tesseractProcess.StartInfo.UseShellExecute = false;
             foreach (var image in images)
             {
+                ConsoleKeyInfo replace = new ConsoleKeyInfo();
+                if(new FileInfo(image.FullName.Substring(0, image.FullName.Length - 3) + "box").Exists)
+                {
+                    Console.WriteLine(string.Format("Box file {0} already exists, overwrite? [Ny]", image.FullName.Substring(0, image.FullName.Length - 3) + "box"));
+                    replace = Console.ReadKey(true);
+                }
+                if(replace.Key != ConsoleKey.Y)
+                {
+                    continue;
+                }
                 StringBuilder args = new StringBuilder(image.FullName);
                 args.Append(" ");
                 args.Append(image.FullName.Substring(0, image.FullName.Length - 4));
@@ -372,7 +391,10 @@ namespace TesseractEasyTrainer
             if(File.Exists(Path.Combine(".", string.Format("{0}.traineddata", languageName))))
             {
                 logger.Log("File combined");
-                File.Copy(Path.Combine(".", string.Format("{0}.traineddata", languageName)), Path.Combine("..", string.Format("{0}.traineddata", languageName)), true);
+                if (!noCopy)
+                { 
+                    File.Copy(Path.Combine(".", string.Format("{0}.traineddata", languageName)), Path.Combine("..", string.Format("{0}.traineddata", languageName)), true); 
+                }
                 logger.Log(string.Format("Trained data file {0} has been generated inside the directory {1}, please copy it inside your tesseract data folder!", string.Format("{0}.traineddata", languageName), new DirectoryInfo("..").FullName));
             }
         }

@@ -64,7 +64,7 @@ namespace TesseractEasyTrainer
                     throw new ArgumentException("Invalid mode exception. Accepted value are: createbox or train. Please run TesseractEasyTrainer.exe --help to get help.");
             }
 
-            var trainer = new Trainer(imagesPath, tesseractPath, eMode, args.LanguageName, args.FontName, args.Verbose, logger);
+            var trainer = new Trainer(imagesPath, tesseractPath, eMode, args.LanguageName, args.FontName, args.NoCopy, args.Verbose, logger);
 
             return trainer;
         }

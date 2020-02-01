@@ -7,9 +7,10 @@ An easy project created to simplify the procedure of training Tesseract, one of 
 
 ### Releases
 ##### Current Version
-[1.0.0](pub-releases/1.0.0.zip)
+[1.0.1](pub-releases/1.0.1.zip)
 
 ##### Old Version
+[1.0.0](pub-releases/1.0.0.zip)
 
 ### How use it
 Refer to Contributing section in order to get the link of original guide.

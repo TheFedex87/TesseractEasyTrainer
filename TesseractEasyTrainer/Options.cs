@@ -26,5 +26,8 @@ train: use the corrected box file to create the trained file")]
 
         [Option('f', "fontname", Required = false, HelpText = "Training font, example: mystrangefont")]
         public string FontName { get; set; }
+
+        [Option('n', "no-copy", Required = false, HelpText = "If setted operate directly in the folder of images-directory, without create a local folder and copy file insde")]
+        public bool NoCopy { get; set; }
     }
 }
