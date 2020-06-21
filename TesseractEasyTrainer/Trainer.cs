@@ -155,10 +155,10 @@ namespace TesseractEasyTrainer
                 {
                     Console.WriteLine(string.Format("Box file {0} already exists, overwrite? [Ny]", image.FullName.Substring(0, image.FullName.Length - 3) + "box"));
                     replace = Console.ReadKey(true);
-                }
-                if(replace.Key != ConsoleKey.Y)
-                {
-                    continue;
+                    if (replace.Key != ConsoleKey.Y)
+                    {
+                        continue;
+                    }
                 }
                 StringBuilder args = new StringBuilder(image.FullName);
                 args.Append(" ");
